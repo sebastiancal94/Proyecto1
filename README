@@ -1,0 +1,3 @@
+morgan= checked HTTP status and request
+express.json = express method that allows receiving and serving Json formats sent from the front end
+express.urlencoded = express method that is used to understand the data that comes from the html forms, we try to understand the data that comes from the forms, simple data that comes from inputs
