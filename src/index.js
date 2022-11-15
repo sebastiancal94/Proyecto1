@@ -5,5 +5,5 @@ const {indexSetting} =require('./start/index.setting')
 indexMiddleware(app)
 indexSetting(app)
 app.listen(app.get('port'), () => {
-    console.log('listening on port ' + port)
+    console.log('listening on port ' + app.get('port'))
 })
