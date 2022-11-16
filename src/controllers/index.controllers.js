@@ -3,7 +3,6 @@ const getUsers = async (req, res) => {
     const response = await pool.query('SELECT * FROM users')
     res.status(200).json(response.rows)
 }
-
 const getUserById = async (req, res) => {
     const id  = req.params.id
     console.log(id)
