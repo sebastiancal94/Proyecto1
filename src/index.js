@@ -8,7 +8,7 @@ indexSetting(app)
 
 async function main() {
   try {
-    await sequelize.authenticate()
+    await sequelize.sync({force: true})
     app.use(require('./routes/index.routes'))
     app.listen(app.get('port'), () => {
       console.log('listening on port ' + app.get('port'))

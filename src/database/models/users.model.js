@@ -1,6 +1,8 @@
 const { DataTypes } = require('sequelize')
 const { sequelize } = require('../database')
-sequelize.define('users', {
+const { Company } = require('./companies.model')
+const { Address } = require('./address.model')
+const Users = sequelize.define('Users', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -27,5 +29,18 @@ sequelize.define('users', {
   },
   website: {
     type: DataTypes.STRING
+  },
+  Company_relation: {
+    type: DataTypes.STRING
   }
 })
+
+User.hasMany(Company, {
+  foreignKey: 'Company_relation',
+  sourceKey: 'id'
+})
+Company.hasMany(User, {
+  foreignKey: 'Company_relation',
+  targetId: 'id'
+})
+module.exports = Users
