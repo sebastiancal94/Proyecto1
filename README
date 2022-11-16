@@ -3,3 +3,5 @@
 // express.urlencoded = express method that is used to understand the data that comes from the html forms, we try to understand the data that comes from the forms, simple data that comes from inputs
 // env = .env is a library that is used to simulate environment variables in order to protect them.in this project we do not send the file because it is a good practice not to do it but we will add the file.env.examples to leave a guide(as an explanation).
 // pg = .pg is a library that is used to conect the database in postgres
+// sequelize = https://sequelize.org/
+
