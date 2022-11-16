@@ -1,27 +1,30 @@
-const { DataTypes } = require('sequelize')
-const { sequelize } = require('../database')
-const { Company } = require('./companies.model')
-const { Address } = require('./address.model')
-const Users = sequelize.define('Users', {
+const { Model,DataTypes, Sequelize } = require('sequelize')
+const USER_TABLE = "users"
+const UserSchema ={
   id: {
-    type: DataTypes.INTEGER,
     primaryKey: true,
-    autoIncrement: true
+    allowNull: false,
+    autoIncrement: true,
+    type: DataTypes.INTEGER,
+
   },
   name: {
     type: DataTypes.STRING
   },
   userName: {
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    field: 'username'
   },
   email: {
     type: DataTypes.STRING
   },
-  address_relation: {
-    type: DataTypes.INTEGER
+  address_Fk: {
+    type: DataTypes.INTEGER,
+    field: 'address'
   },
-  geo_relation: {
-    type: DataTypes.INTEGER
+  geo_Fk: {
+    type: DataTypes.INTEGER,
+    field:"geolocation_relation"
   },
 
   phone: {
@@ -30,17 +33,23 @@ const Users = sequelize.define('Users', {
   website: {
     type: DataTypes.STRING
   },
-  Company_relation: {
-    type: DataTypes.STRING
+  Company_Fk: {
+    type: DataTypes.STRING,
+    field:"company_name"
   }
-})
 
-User.hasMany(Company, {
-  foreignKey: 'Company_relation',
-  sourceKey: 'id'
-})
-Company.hasMany(User, {
-  foreignKey: 'Company_relation',
-  targetId: 'id'
-})
-module.exports = Users
+}
+class User extends Model{
+  static associate() {
+    // relations
+  }
+  static config(sequelize) {
+    return {
+      sequelize,
+      tableName: USER_TABLE,
+      modelName: 'User',
+      timestamps: true,
+    }
+  }
+}
+module.exports = {USER_TABLE, UserSchema, User}
