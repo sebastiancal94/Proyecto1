@@ -1,3 +1,4 @@
+const { models } = require('./../database/database')
 class loginService {
   constructor() {}
   async create(data) {

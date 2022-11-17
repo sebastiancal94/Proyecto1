@@ -7,7 +7,7 @@ const loginRouter = require('./login.routes')
 function routerApi(app) {
   const router = express.Router()
   app.use('/', router)
-  router.use('/', loginRouter)
+  router.use('/login', loginRouter)
   router.use('/users', usersRouter)
   router.use('/geolocation', GeolocationRouter)
   router.use('/Company', CompaniesRouter)
