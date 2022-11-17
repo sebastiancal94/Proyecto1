@@ -1,12 +1,14 @@
-const { Router } = require('express')
-const router = Router()
-const {getUsers,createUser,getUserById,deleteUser,updateUser}=require('../controllers/index.controllers')
-router.get('/', (req, res) => {
-    res.status(201).json({ message: "hola esta es la ruta principal" })
-})
-router.get('/users', getUsers)
-router.get('/users/:id', getUserById)
-router.post('/users/create', createUser)
-router.post('/users/:id', updateUser)
-router.delete('/users/:id/',deleteUser)
-module.exports = router
+const express = require('express')
+const usersRouter = require('./user.routes');
+const GeolocationRouter = require('./geolocation.routes');
+const CompaniesRouter = require('./companies.routes');
+const AddressRouter = require('./address.routes')
+function routerApi(app) {
+  const router = express.Router()
+    app.use('/', router)
+  router.use('/users', usersRouter)
+  router.use('/geolocation', GeolocationRouter)
+  router.use('/Company', CompaniesRouter)
+  router.use('/Address',AddressRouter)
+}
+module.exports = routerApi

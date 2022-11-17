@@ -1,7 +1,10 @@
 const { pool } = require('../database/postgres.connection')
+const { models } = require('./../database/database')
 const getUsers = async (req, res) => {
-    const response = await pool.query('SELECT * FROM users')
-    res.status(200).json(response.rows)
+    // const response = await pool.query('SELECT * FROM users')
+    const response = await models.User.findAll()
+    res.status(200).json(response)
+    
 }
 const getUserById = async (req, res) => {
     const id  = req.params.id
