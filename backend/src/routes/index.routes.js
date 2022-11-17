@@ -1,7 +1,7 @@
 const express = require('express')
-const usersRouter = require('./user.routes');
-const GeolocationRouter = require('./geolocation.routes');
-const CompaniesRouter = require('./companies.routes');
+const usersRouter = require('./user.routes')
+const GeolocationRouter = require('./geolocation.routes')
+const CompaniesRouter = require('./companies.routes')
 const AddressRouter = require('./address.routes')
 const loginRouter = require('./login.routes')
 function routerApi(app) {
@@ -11,6 +11,6 @@ function routerApi(app) {
   router.use('/users', usersRouter)
   router.use('/geolocation', GeolocationRouter)
   router.use('/Company', CompaniesRouter)
-  router.use('/Address',AddressRouter)
+  router.use('/Address', AddressRouter)
 }
 module.exports = routerApi

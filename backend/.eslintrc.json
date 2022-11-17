@@ -15,6 +15,7 @@
     },
     "rules": {
         "quotes":"warn",
-        "semi":"warn"
+        "semi":"warn",
+        "doublequote": true
     }
 }

@@ -5,7 +5,7 @@ class loginService {
     return newUser
   }
   async find() {
-    const rta =  {message:"hello world, this is my message in services"}
+    const rta = await models.User.findAll()
     return rta
   }
   async findOne(id) {
