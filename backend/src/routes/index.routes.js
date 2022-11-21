@@ -12,5 +12,7 @@ function routerApi(app) {
   router.use('/geolocation', GeolocationRouter)
   router.use('/Company', CompaniesRouter)
   router.use('/Address', AddressRouter)
+  router.use('/', (req, res) => {
+    res.json({ message: "this is start page" })})
 }
 module.exports = routerApi

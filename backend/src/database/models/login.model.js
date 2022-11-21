@@ -1,5 +1,5 @@
 const { Model, DataTypes, Sequelize } = require('sequelize')
-const LOGIN_TABLE = 'login_table'
+const LOGIN_TABLE = 'Login'
 const LoginSchema = {
     id: {
         type: DataTypes.INTEGER,
@@ -17,7 +17,7 @@ class Login extends Model {
     return {
       sequelize,
       tableName: LOGIN_TABLE,
-      modelName: 'login_table',
+      modelName: 'Login',
       timestamps: true
     }
   }

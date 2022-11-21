@@ -2,28 +2,29 @@ const { models } = require('./../database/database')
 class loginService {
   constructor() {}
   async create(data) {
-    const newUser = await models.User.create(data)
-    return newUser
+    const newLogin = await models.Login.create(data)
+    return newLogin
   }
   async find() {
-    const rta = await models.User.findAll()
-    return rta
+    const login = await models.Login.findAll()
+
+    return login
   }
   async findOne(id) {
-    const user = await models.User.findByPk(id)
-    if (!user) {
-      throw boom.notFound('user not found')
+    const Login = await models.Login.findByPk(id)
+    if (!Login) {
+     return {message: 'Login unavailable'}
     }
-    return user
+    return Login
   }
   async update(id, changes) {
-    const user = await this.findOne(id)
-    const rta = await user.update(changes)
+    const Login = await this.findOne(id)
+    const rta = await Login.update(changes)
     return rta
   }
   async delete(id) {
-    const user = await this.findOne(id)
-    await user.destroy()
+    const Login = await this.findOne(id)
+    await Login.destroy()
     return { id }
   }
 }
