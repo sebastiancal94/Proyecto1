@@ -47,7 +47,7 @@ router.delete('/:id', async (req, res) => {
     try {
         const { id } = req.params;
         await service.delete(id);
-        res.json(loginUpdate)
+        res.json({ message:"delete success"})
     } catch (error) {
         console.log(error)
     }
