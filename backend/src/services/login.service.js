@@ -43,7 +43,7 @@ class loginService {
 try {
   const Login = await this.findOne(id)
   await Login.destroy()
-  return { id }
+  return "delete"
 
 } catch (error) {
   throw boom.conflict('impossible delete, unauthorized')
