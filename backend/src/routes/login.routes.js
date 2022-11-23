@@ -1,19 +1,21 @@
 const express = require('express')
+
 const loginService = require('./../services/login.service')
 const service = new loginService()
 const router = express.Router()
 
 router.post('/', async (req, res) => {
+    console.log('req.boy=>', req.body)
     try {
         const body = req.body
         const login = await service.create(body)
-        res.json(login)
+        res.status(200).json(login)
     } catch (error) {
         console.log(error)
     }
 }
-)
 
+)
 router.get('/', async (req, res) => {
     try {
         const loginAllRegister = await service.find()

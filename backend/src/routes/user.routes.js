@@ -11,7 +11,8 @@ router.get('/:id', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-    const response = await models.User.create(body)
+    // const response = await models.User.create(body)
+    console.log(req.body)
     res.status(200).json({message:"create users router"})
 }
 )
