@@ -1,11 +1,13 @@
 const express = require('express')
-
 const loginService = require('./../services/login.service')
+const validatorHandler  = require('./../middleware/validator.handler')
+const {createUserLogin} = require('./../schemas/login.schemas')
 const service = new loginService()
 const router = express.Router()
 
-router.post('/', async (req, res) => {
-    console.log('req.boy=>', req.body)
+router.post('/',
+    validatorHandler(createUserLogin,'body'),
+    async (req, res) => {
     try {
         const body = req.body
         const login = await service.create(body)
