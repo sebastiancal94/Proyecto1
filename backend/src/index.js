@@ -7,6 +7,7 @@ const { indexMiddleware } = require('./start/index.middleware')
 indexMiddleware(app)
 indexSetting(app)
 routerApi(app)
+
 async function main() {
   try {
     await sequelize.sync()
@@ -19,3 +20,4 @@ async function main() {
   }
 }
 main()
+
