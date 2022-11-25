@@ -1,5 +1,4 @@
 const { Model, DataTypes, Sequelize } = require('sequelize')
-const { User } = require('./users.model')
 const {geo_locations} =require('./geolocation.model')
 const ADDRESS_TABLE = 'address'
 const AddressSchema = {
@@ -24,7 +23,7 @@ const AddressSchema = {
 }
 class address extends Model {
   static associate() {
-    address.geo_locations = address.hasMany(geo_locations);
+    address.geo_locations = address.belongsTo(geo_locations);
    
   }
   static config(sequelize) {
