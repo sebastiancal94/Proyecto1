@@ -14,5 +14,9 @@ function routerApi(app) {
   router.use('/Company', CompaniesRouter)
   router.use('/Address', AddressRouter)
   router.use('/axios', axiosRouter)
+  router.use('/',
+    ( req, res) => {
+    res.json({message:"init app"})
+  })
 }
 module.exports = routerApi
