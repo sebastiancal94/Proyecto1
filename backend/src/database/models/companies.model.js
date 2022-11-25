@@ -7,15 +7,15 @@ const CompaniesSchema = {
     autoIncrement: true
   },
   name: { type: DataTypes.STRING },
-  catchPhase: {
+  catchPhrase: {
     type: DataTypes.STRING,
-    field: 'catch_phase'
+
   },
   bs: { type: DataTypes.STRING }
 }
 class Company extends Model {
   static associate() {
-    // relations
+    Company.User = Company.HasMany(User)
   }
   static config(sequelize) {
     return {

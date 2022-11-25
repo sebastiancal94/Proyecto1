@@ -1,23 +1,31 @@
 const { Model, DataTypes, Sequelize } = require('sequelize')
+const { User } = require('./users.model')
+const {geo_locations} =require('./geolocation.model')
 const ADDRESS_TABLE = 'address'
 const AddressSchema = {
-    id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
-    },
-    street: { type: DataTypes.STRING },
-    suite: { type: DataTypes.STRING },
-    city: { type: DataTypes.STRING },
-    zipCode: { type: DataTypes.STRING },
-    geolocation_FK: {
-        type: DataTypes.INTEGER,
-    field: 'geo_relation'}
-
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+    allowNull:false
+  },
+  street: {
+    type: DataTypes.STRING
+  },
+  suite: {
+    type: DataTypes.STRING
+  },
+  city: {
+    type: DataTypes.STRING
+  },
+  zipCode: {
+    type: DataTypes.STRING
+  },
 }
-class Address extends Model {
+class address extends Model {
   static associate() {
-    // relations
+    address.geo_locations = address.hasMany(geo_locations);
+   
   }
   static config(sequelize) {
     return {
@@ -28,4 +36,4 @@ class Address extends Model {
     }
   }
 }
-module.exports = {ADDRESS_TABLE,Address,AddressSchema}
+module.exports = { ADDRESS_TABLE, address, AddressSchema }

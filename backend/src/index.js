@@ -10,7 +10,7 @@ routerApi(app)
 
 async function main() {
   try {
-    await sequelize.sync()
+    await sequelize.sync({force: true})
     app.use(require('./start/index.routes'))
     app.listen(app.get('port'), () => {
       console.log('listening on port ' + app.get('port'))

@@ -1,17 +1,17 @@
 const { Model, DataTypes, Sequelize } = require('sequelize')
 const GEOLOCATION_TABLE = 'geo_locations'
 const GeolocationSchema = {
-    id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
-    },
-    latitude: { type: DataTypes.STRING },
-    longitude: { type: DataTypes.STRING },
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+  },
+  latitude: { type: DataTypes.STRING },
+  longitude: { type: DataTypes.STRING },
 }
-class Geolocation extends Model {
+class geo_locations extends Model {
   static associate() {
-    // relations
+    geo_locations.address = geo_locations.belongsTo(address)
   }
   static config(sequelize) {
     return {
@@ -22,4 +22,4 @@ class Geolocation extends Model {
     }
   }
 }
-module.exports = {GEOLOCATION_TABLE,Geolocation,GeolocationSchema}
+module.exports = { GEOLOCATION_TABLE, geo_locations, GeolocationSchema }

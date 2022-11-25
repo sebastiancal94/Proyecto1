@@ -1,4 +1,6 @@
-const { Model,DataTypes, Sequelize } = require('sequelize')
+const { Model, DataTypes, Sequelize } = require('sequelize')
+const { address } = require('./address.model')
+const {Company} = require('./companies.model')
 const USER_TABLE = "users"
 const UserSchema ={
   id: {
@@ -18,14 +20,6 @@ const UserSchema ={
   email: {
     type: DataTypes.STRING
   },
-  address_Fk: {
-    type: DataTypes.INTEGER,
-    field: 'address'
-  },
-  geo_Fk: {
-    type: DataTypes.INTEGER,
-    field:"geolocation_relation"
-  },
 
   phone: {
     type: DataTypes.STRING
@@ -33,15 +27,12 @@ const UserSchema ={
   website: {
     type: DataTypes.STRING
   },
-  Company_Fk: {
-    type: DataTypes.STRING,
-    field:"company_name"
-  }
-
 }
 class User extends Model{
   static associate() {
-    // relations
+    User.Address = User.belongsTo(address);
+    User.Company = User.belongsTo(Company);
+
   }
   static config(sequelize) {
     return {

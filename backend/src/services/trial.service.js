@@ -1,11 +1,11 @@
-const { models } = require('./../database/database')
+const { models } = require('../database/database')
 const boom = require('@hapi/boom')
-class loginService {
+class trialService {
   constructor() {}
   async create(data) {
     try {
-      const newLogin = await models.Login.create(data)
-      return newLogin
+      const newTrial = await models.trial.create(data)
+      return newTrial
     } catch (error) {
       throw boom.notFound('User or password is not available')
     }
@@ -13,8 +13,8 @@ class loginService {
 
   async find() {
     try {
-      const login = await models.Login.findAll()
-      return login
+      const trial = await models.trial.findAll()
+      return trial
     } catch (error) {
       throw boom.notAcceptable('User or password is not available')
     }
@@ -22,8 +22,8 @@ class loginService {
 
   async findOne(id) {
     try {
-      const Login = await models.Login.findByPk(id)
-      return Login
+      const trial = await models.trial.findByPk(id)
+      return trial
     } catch (error) {
       throw boom.notFound('User or password is not available')
     }
@@ -31,8 +31,8 @@ class loginService {
 
   async update(id, changes) {
     try {
-      const Login = await this.findOne(id)
-      const rta = await Login.update(changes)
+      const trial = await this.findOne(id)
+      const rta = await trial.update(changes)
       return rta
     } catch (error) {
       throw boom.badData('invalid data for update')
@@ -40,15 +40,16 @@ class loginService {
   }
 
   async delete(id) {
-try {
-  const Login = await this.findOne(id)
-  await Login.destroy()
-  return "delete"
 
-} catch (error) {
-  throw boom.conflict('impossible delete, unauthorized')
-  
-}
+      const trial = await this.findOne(id)
+      try {
+        const rta = await trial.destroy(id)
+      } catch (error) {
+        let rta =false
+        return rta
+      }
+
+
   }
 }
-module.exports = loginService
+module.exports = trialService
