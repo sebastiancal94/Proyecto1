@@ -11,7 +11,7 @@ const GeolocationSchema = {
 }
 class geo_locations extends Model {
   static associate() {
-    geo_locations.address = geo_locations.hasMany(address)
+    // geo_locations.address = geo_locations.hasMany(address)
   }
   static config(sequelize) {
     return {
