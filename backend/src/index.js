@@ -4,7 +4,7 @@ const sequelize = require('./database/database')
 const routerApi = require('./start/index.routes')
 const { indexSetting } = require('./start/index.setting')
 const { indexMiddleware } = require('./start/index.middleware')
-const {allData} = require('./routes/axios.routes')
+const {allData} = require('./start/axios')
 indexMiddleware(app)
 indexSetting(app)
 routerApi(app)
@@ -13,7 +13,6 @@ async function main() {
   try {
     await sequelize.sync({ force: true })
     if (sequelize.sync({ force: true })) {
-      console.log('trues')
        await allData()
     } else {
       console.log('false')
