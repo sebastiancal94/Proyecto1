@@ -1,8 +1,8 @@
 const express = require('express')
-const {models} = require('../database/database')
+const { models } = require('../database/database')
 const router = express.Router()
 router.get('/', async (req, res) => {
-    const response = await models.User.findAll()
+    
     res.status(200).json({message:"findAll users router"})
 })
 router.get('/:id', async (req, res) => {

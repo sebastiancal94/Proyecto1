@@ -8,6 +8,7 @@ const config = {
   DB_NAME: process.env.DB_NAME,
   DB_PORT: process.env.DB_PORT,
   DB_DIALECT: process.env.DB_DIALECT,
+  API_KEY : process.env.API_KEY ,
   POOL_CONFIG_MAX: process.env.POOL_CONFIG_MAX,
   POOL_CONFIG_MIN: process.env.POOL_CONFIG_MIN,
   POOL_CONFIG_ACQUIRE: process.env.POOL_CONFIG_ACQUIRE,
@@ -15,6 +16,5 @@ const config = {
   EMAIL_USERS: process.env.EMAIL_USERS,
   EMAIL_PASSWORDS: process.env.EMAIL_PASSWORD,
   EMAIL_PORT: process.env.EMAIL_PORT
-
 }
 module.exports = { config }

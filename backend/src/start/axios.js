@@ -8,12 +8,10 @@ const { geo_locations } = require('../database/models/geolocation.model')
 const { Company } = require('../database/models/companies.model')
 const allData = async () => {
     const Data = await axios.get('https://jsonplaceholder.typicode.com/users')
-    console.log(Data.data)
     const DataUsers = Data.data.map(async (element, index) => {
         try {
             await models.trials.bulkCreate([
                 {
-                    id: element.id,
                     name: element.name,
                     username: element.username,
                     password: '123456',

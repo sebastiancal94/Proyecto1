@@ -1,27 +1,26 @@
 const express = require('express')
-const boom = require('@hapi/boom')
 const trialService = require('../services/trial.service')
 const validatorHandler = require('../middleware/validator.handler')
 const { createUserTrial, updateCredentialsTrial, getUserTrial } = require('../schemas/trial.schemas')
-const service = new trialService()
 const router = express.Router()
-
-router.post('/', validatorHandler(createUserTrial, 'body'), async (req, res) => {
+const boom = require('@hapi/boom')
+const service = new trialService()
+router.post('/', validatorHandler(createUserTrial, 'body'), async (req, res,next) => {
   try {
     const body = req.body
+    console.log('this is body or trialRoutes',body)
     const trial = await service.create(body)
     res.status(200).json(trial)
   } catch (error) {
-    throw boom.notFound('data is not available, change data in fields')
+    next(error)
   }
 })
-router.get('/', async (req, res) => {
+router.get('/', async (req, res, next) => {
   try {
-    const trialAllRegister = await service.find()
-    res.json(trialAllRegister)
+    const users = await service.find();
+    res.json(users);
   } catch (error) {
-    
-    throw boom.notAcceptable('User or password is not available')
+    next(error);
   }
 })
 router.get('/:id', validatorHandler(getUserTrial, 'params'), async (req, res) => {
@@ -44,13 +43,13 @@ router.patch('/:id', validatorHandler(getUserTrial, 'params'), validatorHandler(
     throw boom.badData('invalid data for update')
   }
 })
-router.delete('/:id', async (req, res) => {
+router.delete('/:id',validatorHandler(getUserTrial, 'params'), async (req, res, next) => {
 try {
   const { id } = req.params
-  await service.delete(id)
-  return "ok"
+  const trial = await service.delete(id)
+  res.status(200).json(trial)
 } catch (error) {
-  return rta
+  next(error)
 }
  
 })

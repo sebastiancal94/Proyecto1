@@ -1,55 +1,67 @@
 const { models } = require('../database/database')
 const boom = require('@hapi/boom')
+const bcrypt = require('bcrypt')
 class trialService {
-  constructor() {}
+  constructor() { }
   async create(data) {
-    try {
-      const newTrial = await models.trial.create(data)
-      return newTrial
-    } catch (error) {
-      throw boom.notFound('User or password is not available')
-    }
+   if (!data || data.length === 0) {
+    return boom.badData('impossible to create a user')
+   } else {
+     const password = await bcrypt.hash(data.password, 10);
+     const trials = await models.trials.create({
+       ...data,
+       password: password
+     })
+     delete(trials.dataValues.password)
+    return trials
+   }
+   
   }
-
   async find() {
-    try {
-      const trial = await models.trial.findAll()
+    const trial = await models.trials.findAll()
+    if (trial === undefined || trial.length == 0) {
+      return boom.notFound('No data found')
+    } else {
       return trial
-    } catch (error) {
-      throw boom.notAcceptable('User or password is not available')
+
     }
+
+
   }
 
   async findOne(id) {
-    try {
-      const trial = await models.trial.findByPk(id)
+    const trial = await models.trials.findByPk(id)
+    if (trial === undefined || trial.length == 0) {
+      return boom.notFound('No data found')
+    } else {
       return trial
-    } catch (error) {
-      throw boom.notFound('User or password is not available')
+
     }
+
   }
 
   async update(id, changes) {
-    try {
-      const trial = await this.findOne(id)
-      const rta = await trial.update(changes)
+
+    const trial = await this.findOne(id)
+    const rta = await trial.update(changes)
+    if (trial === undefined || trial.length == 0) {
+      return boom.notFound('No data found')
+    } else {
       return rta
-    } catch (error) {
-      throw boom.badData('invalid data for update')
     }
+
+
   }
 
   async delete(id) {
-
-      const trial = await this.findOne(id)
-      try {
-        const rta = await trial.destroy(id)
-      } catch (error) {
-        let rta =false
-        return rta
-      }
-
-
+    try {
+      const trial = await models.trials.findByPk(id)
+      if (trial) {
+        await trial.destroy()
+        return "Successfully"
+      } else { return [] }
+    } catch (e) { throw e }
   }
+
 }
 module.exports = trialService

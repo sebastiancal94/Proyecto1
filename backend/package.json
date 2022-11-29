@@ -24,7 +24,11 @@
   "dependencies": {
     "@hapi/boom": "^10.0.0",
     "axios": "0.26.1",
+    "bcrypt": "^5.1.0",
+    "cors": "^2.8.5",
+    "helmet": "^6.0.0",
     "joi": "^17.7.0",
+    "jsonwebtoken": "^8.5.1",
     "nodemailer": "^6.8.0",
     "pg": "^8.8.0",
     "pg-hstore": "^2.3.4",

@@ -1,10 +1,11 @@
 const express = require('express')
 const app = express()
 const sequelize = require('./database/database')
-const routerApi = require('./start/index.routes')
+
 const { indexSetting } = require('./start/index.setting')
 const { indexMiddleware } = require('./start/index.middleware')
-const {allData} = require('./start/axios')
+const { allData } = require('./start/axios')
+const routerApi = require('./start/index.routes')
 indexMiddleware(app)
 indexSetting(app)
 routerApi(app)
@@ -25,5 +26,6 @@ async function main() {
     console.error('impossible connection', error)
   }
 }
+
 main()
 

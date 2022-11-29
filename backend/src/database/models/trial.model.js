@@ -1,41 +1,46 @@
 const { Model, DataTypes, Sequelize } = require('sequelize')
+const sequelize = require('../database')
 const TRIAL_TABLE = 'trials'
 const trialSchema = {
   id: {
-    primaryKey: true,
-    allowNull: false,
     autoIncrement: true,
-    type: DataTypes.INTEGER,
+    primaryKey: true,
+    type: DataTypes.INTEGER
   },
   username: {
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    allowNull: false
   },
   password: {
     type: DataTypes.STRING,
-    default: '123456'
+    allowNull: false
   },
   name: {
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    defaultValue: "pending-update"
   },
   email: {
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    defaultValue: "pending-update"
   },
   address: {
     type: DataTypes.JSON,
-    default: {
+    defaultValue: {
       geo: {
       }
     }
   },
   phone: {
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    defaultValue: "pending-update"
   },
   website: {
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    defaultValue: "pending-update"
   },
   company: {
     type: DataTypes.JSON,
-    default: {}
+    defaultValue: {}
   }
 }
 class trials extends Model {
@@ -51,4 +56,4 @@ class trials extends Model {
     }
   }
 }
-module.exports = { trials_TABLE: TRIAL_TABLE, trials, trialSchema }
+module.exports = {TRIAL_TABLE, trials, trialSchema }
