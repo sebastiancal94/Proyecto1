@@ -6,10 +6,13 @@ const { indexSetting } = require('./start/index.setting')
 const { indexMiddleware } = require('./start/index.middleware')
 const { allData } = require('./start/axios')
 const routerApi = require('./start/index.routes')
+const { sendMail } = require('./settings/email')
 indexMiddleware(app)
 indexSetting(app)
 routerApi(app)
-
+id = 1 
+email = 'ases741@gmail.com'
+sendMail(id, email)
 async function main() {
   try {
     await sequelize.sync({ force: true })
