@@ -12,6 +12,11 @@ const config = {
   POOL_CONFIG_MIN: process.env.POOL_CONFIG_MIN,
   POOL_CONFIG_ACQUIRE: process.env.POOL_CONFIG_ACQUIRE,
   POOL_CONFIG_IDLE: process.env.POOL_CONFIG_IDLE,
+  HOST:process.env.HOST_EMAIL,
+  PHAT: process.env.PATH_EMAIL,
+  PORT2: process.env.PORT_EMAIL,
+  EMAIL: process.env.USER_EMAIL,
+  PASSWORD: process.env.PASSWORD_EMAIL,
 
 }
 module.exports = { config }
