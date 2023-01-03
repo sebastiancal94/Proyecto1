@@ -24,7 +24,7 @@ function NavPage(props) {
 function CharacterList() {
   const [characters, setCharacters] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [page,setPage] = useState(42)
+  const [page,setPage] = useState(1)
   useEffect(() => {
       async function dataCharacter() {
         const response = await fetch(
