@@ -14,7 +14,7 @@ function NavPage(props) {
       <button
         className="btn btn-primary btn-sm"
         onClick={() => props.setPage(props.page + 1)}
-        disabled= {props.page === 42}
+        disabled= {props.page === 1}
       >
         Page {props.page}
       </button>
